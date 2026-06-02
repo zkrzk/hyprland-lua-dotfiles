@@ -4,6 +4,15 @@ Markdown
 My personal, high-performance Linux rice. It is tailored specifically to my daily workflow, spiritual routine, and aesthetic preferences. It is not designed to be a universal "plug-and-play" distribution—it works for me, and that is its sole purpose.
 
 ---
+---
+
+## 📸 Screenshots
+
+<p align="center">
+  <img src="screenshots/preview1.png" alt="Hyprland Desktop Workspace" width="100%">
+</p>
+
+---
 
 ## 🛠️ System Architecture & Feature Deep-Dive
 
