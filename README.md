@@ -1,69 +1,74 @@
-# Hyprland Modular Configuration (Lua-Driven)
+Markdown
+# 🧠 hyprland-lua-dotfiles
 
-A modular, file-structured Hyprland configuration managed via Lua script architecture. This repository provides dynamic theme compilation, automated wallpaper architecture, and multi-layout Waybar configuration management.
+My personal, high-performance Linux rice. It is tailored specifically to my daily workflow, spiritual routine, and aesthetic preferences. It is not designed to be a universal "plug-and-play" distribution—it works for me, and that is its sole purpose.
 
-## Repository Architecture
+---
 
-```text
-.config/
-├── hypr/
-│   ├── hyprland.lua          # Main compositor initialization entrypoint
-│   ├── hypridle.conf         # Idle management daemon properties
-│   ├── hyprlock.conf         # Screen locker configuration
-│   ├── current_colors.lua    # Dynamically generated theme variables
-│   ├── wallpaper-change.sh   # Background processing and wallpaper daemon tool
-│   └── modules/
-│       ├── binds.lua         # Keyboard shortcuts and input mappings
-│       ├── decorations.lua   # Window rules, blurs, shadows, and animations
-│       └── autostart.lua     # Core background processes and system daemons
-├── waybar/                   # Waybar bar configurations (5 switchable layouts via Rofi)
-├── rofi/                     # Application launcher and layout switcher profiles
-├── kitty/                    # Terminal emulator profile
-└── themes/                   # Flat-file system color database
+## 🛠️ System Architecture & Feature Deep-Dive
 
-System Dependencies
+This configuration operates on an interconnected, event-driven ecosystem. Components do not just run statically; they continuously communicate and share states to maintain a seamless, GPU-accelerated tiling workspace.
+
+### 1. `hypr/` (The Lua-Driven Core Switchboard)
+Instead of relying on a single, monolithic configuration text file, the compositor settings are organized through a modular Lua architecture.
+* **`hyprland.lua`:** The centralized orchestration engine that cleanly imports system rules and inputs.
+* **`current_colors.lua`:** A dynamically generated asset written on-the-fly by the wallpaper daemon. It acts as a single source of truth, injecting runtime hexadecimal color maps directly into active window borders, animations, and blur properties without requiring a compositor reload.
+* **`modules/autostart.lua` & `binds.lua`:** Separates system daemons (idle, lockers, background utilities) from keyhandler workflows to guarantee maximum responsiveness.
+
+### 2. `waybar/` (The Dynamic Intelligence Hub)
+The status bar is engineered as an active data receiver rather than a basic system monitor. It holds **5 switchable layouts** hot-swapped via Rofi scripts, natively embedding:
+* **Islamic Prayer Times Module (`custom/prayer`):** A custom backend pipeline executing highly optimized scripts (Python/Bash) calculated according to precise local geographical coordinates. It calculates the exact remaining delta time until the next prayer, returning live text outputs paired with custom, theme-compliant icons.
+* **Dynamic Weather Module:** Periodically synchronizes JSON payloads containing regional meteorological statuses and live temperatures, styling UI icon states depending on atmospheric conditions.
+* **`cava` Audio Integration:** Hooks directly into your PipeWire/PulseAudio audio stream loop, processing output frequencies into live, lightweight vertical ASCII bars inside the system tray wrapper to provide fluid, real-time audio visualization.
+
+### 3. `rofi/` (The Global Router & Component Switcher)
+Rofi goes far beyond a basic application menu to serve as the control center of the setup.
+* Uses responsive, `.rasi` styled grid layouts completely driven by the active wallpaper color theme palette.
+* Houses specialized menus for power states, system configuration overrides, and the automated **Waybar Layout Switcher** which shifts structural symbolic links (symlinks) on-the-fly.
+
+### 4. `themes/` (The Centralized Color Abstractor)
+Acts as a flat-file color variable database. When a new background is chosen via `wallpaper-change.sh`, a processing layer parses the image palette (utilizing Imagemagick/custom scripts). It translates those color nodes across this centralized directory, instantly applying matching color schemas to Kitty, Rofi, Waybar, and Hyprland's active borders simultaneously.
+
+### 5. `fish/` & `fastfetch/` (The Clean Shell Workspace)
+* **`fish/`:** Provides an interactive, ultra-fast shell ecosystem with custom terminal prompts, integrated aliases, syntax highlighting, and immediate completions. It ensures that interacting with system configurations is fast and seamless.
+* **`fastfetch/`:** Stripped of standard bloated readouts and fully customized via a clean JSON configuration to display hardware specs, uptime, and active window manager metrics in a clean, professional layout upon spawning a terminal split.
+
+### 6. `kitty/` (The GPU-Accelerated Terminal Canvas)
+A minimal, ultra-low latency terminal canvas mapped to inherit the precise color maps generated by your theme database. Features font rendering configurations optimized for legibility, paired with zero-padding border configurations for a true seamless tiling workspace look.
+
+---
+
+## 📦 System Dependencies
+
 Before deployment, ensure the core ecosystem and helper utilities are fully installed on your rolling release distribution:
 
-Compositor & Core Utilities
-hyprland (Modern Lua-supported versions)
+### Core Compositor & Utilities
+* `hyprland` (Modern Lua-supported versions)
+* `hypridle` & `hyprlock` (Official idle/lock management ecosystem)
+* `kitty` (Default target terminal emulator)
 
-hypridle & hyprlock (Official idle/lock management ecosystem)
+### Interface & Themes
+* `waybar` (Status bar configuration)
+* `rofi-wayland` (Dynamic menu and application infrastructure)
+* `cava` (Console-based Audio Visualizer)
 
-kitty (Default target terminal emulator)
+### Scripting & Custom Daemons
+* `python3` (Required for specialized scripting backends and prayer times)
+* `lua` (Required for standard file-structure compilation)
+* `imagemagick` & `bash` (Required for the dynamic theme pipeline script)
 
-Interface & Themes
-waybar (Status bar configuration)
+---
 
-rofi-wayland (Dynamic menu and application infrastructure)
+## 🚀 Installation and Deployment
 
-waypaper / swww (Required wallpaper backend execution)
-
-Scripting & Custom Daemons
-python3 (Required for specialized scripting backends)
-
-lua (Required for standard file-structure compilation)
-
-Installation and Deployment
 Clone the assets and run the deployment script directly from your terminal interface:
 
-Bash
+```fish
 git clone [https://github.com/zkrzk/hyprland-lua-dotfiles.git](https://github.com/zkrzk/hyprland-lua-dotfiles.git)
 cd hyprland-lua-dotfiles
 chmod +x install.sh
 ./install.sh
-Warning: The installation script backs up existing structures inside ~/.config/ with the .bak extension before writing directories.
+⚠️ Warning: The installation script backs up existing structures inside ~/.config/ with the .bak extension before writing directories. There is no lock file and no stability guarantees across different machines. If you update something and it breaks, debugging it is entirely your responsibility.
 
-Core Component Configuration
-1. Dynamic Wallpaper & Themes
-The background framework uses wallpaper-change.sh. It handles color abstraction pipelines, matching system-wide theme properties with target wallpaper palettes, and links files via:
-~/.config/hypr/current_wallpaper
-
-2. Waybar Layout Switcher
-Managed dynamically via Rofi. Configurations can be updated or added directly in ~/.config/waybar/. The 5 standard switchable profiles are stored sequentially in the asset folder.
-
-3. Localization and Prayer Times Setup
-Custom user utilities (such as python scripts tracking geolocation or local schedules) execute as background processes called during initialization in:
-~/.config/hypr/modules/autostart.lua
-
-Modify geographical variables directly inside your local script configs to calculate correct regional target times.
-
+🔒 Final Note
+This rice is completely personal. If you do not like the custom scripts, the automated prayer times, or the specific layouts, do not use it. If you want a generic, cookie-cutter dotfiles tutorial, you are in the wrong repository.
