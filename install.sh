@@ -1,22 +1,28 @@
 #!/usr/bin/env bash
 
-echo "✨ Setting up your legendary Hyprland-Lua Rice..."
+set -e
 
-# Create backup of existing configs if they exist
-for folder in hypr waybar rofi kitty fastfetch fish themes; do
+echo "==> Initializing configuration deployment..."
+
+CONFIG_FOLDERS=(hypr waybar rofi kitty fastfetch fish themes)
+BACKUP_DIR="$HOME/.config/backup_$(date +%Y%m%d_%H%M%S)"
+
+# Backup existing configurations
+for folder in "${CONFIG_FOLDERS[@]}"; do
     if [ -d "$HOME/.config/$folder" ]; then
-        echo "📦 Backing up old $folder config to $folder.bak"
-        mv "$HOME/.config/$folder" "$HOME/.config/${folder}.bak"
+        mkdir -p "$BACKUP_DIR"
+        echo "    [BACKUP] Moving ~/.config/$folder to $BACKUP_DIR/"
+        mv "$HOME/.config/$folder" "$BACKUP_DIR/"
     fi
 done
 
-# Copy new configs
-echo "🚀 Copying new configs to ~/.config/..."
+# Deploy new configurations
+echo "==> Deploying configuration files to ~/.config/..."
 cp -r .config/* "$HOME/.config/"
 
-# Make scripts executable
-echo "🔑 Making scripts executable..."
-chmod +x "$HOME/.config/rofi/scripts/"*.sh
-chmod +x "$HOME/.config/waybar/"*.py
+# Apply permissions
+echo "==> Setting executable permissions on scripts..."
+chmod +x "$HOME/.config/rofi/scripts/"*.sh 2>/dev/null || true
+chmod +x "$HOME/.config/waybar/"*.py 2>/dev/null || true
 
-echo "✅ All done! Reload Hyprland and enjoy the magic!"
+echo "==> Deployment completed successfully. Please reload your WM."

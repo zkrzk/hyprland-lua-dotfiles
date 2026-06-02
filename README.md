@@ -1,30 +1,43 @@
-# 🌊 Hyprland-Lua Multi-Layout Rice
+# Hyprland Modular Configuration (Lua-Driven)
 
-Alright folks, you asked for it on Reddit, so here it is! This is my personal, highly customized Arch Linux setup. It's not your typical Hyprland setup—the entire window manager is configured using **Lua**, and it features a dynamic theme-switching core and 5 on-the-fly Waybar layouts.
+A highly customized, modular dotfiles repository for Hyprland. This setup features a centralized flat-file theme database for system-wide color coordination and 5 dynamically switchable Waybar layouts handled via Rofi.
 
 ---
 
-## 🔥 Key Features
-* 🧠 **Hyprland via Lua:** Configured completely with Lua modules (`modules/*.lua`) for maximum performance and clean hacking.
-* 📊 **5 Waybar Layouts:** Hot-swap between `dynamic_island`, `bottom_dock`, `minimal`, `all_right`, and `Full` instantly via Rofi.
-* 🎨 **Dynamic Theme Core:** One single `master_themes.conf` triggers system-wide color changes across Hyprland, Waybar, Rofi, Kitty, and Fish Shell flawlessly.
-* 🕋 **Prayer & Weather Modules:** Python-powered scripts with local caching to keep you updated without breaking system packages or hitting API limits.
+## 📊 System Architecture
+
+### 1. Window Manager Configuration (`.config/hypr`)
+Unlike traditional single-file monolithic setups, this configuration utilizes a modular Lua structure layout. The core entry point structures the components hierarchically:
+* `modules/binds.lua` - Keybindings and window management shortcuts.
+* `modules/decorations.lua` - Blurring, rounded corners, shadows, and animations.
+* `modules/autostart.lua` - Background daemons, ambient services, and environment initialization.
+
+### 2. Centralized Theming Engine
+The system color palette is managed via `~/.config/themes/master_themes.conf`, acting as a flat-file database. When a theme is selected via Rofi (`theme_selector.sh`):
+* It parses the specific hex values.
+* Generates `current_colors.css` for Waybar.
+* Generates `colors.rasi` for Rofi.
+* Exports variables to native Lua modules for Hyprland evaluation.
 
 ---
 
 ## 🛠️ Dependencies
-Make sure you have these bad boys installed before diving in:
-* **WM:** `hyprland` (and whatever Lua-wrapper you use)
-* **Bar & Menu:** `waybar`, `rofi`, `jq`
-* **Terminal & Shell:** `kitty`, `fish`, `fastfetch`
-* **Python Deps:** `python-requests` (for the prayer cache script)
-* **Fonts:** `ttf-jetbrains-mono-nerd`, `ttf-vazirmatn-fonts` (for perfect Arabic fallback support in Rofi)
+
+Ensure the following packages are installed on your system before deploying:
+
+| Component | Required Packages |
+|-----------|-------------------|
+| **Core WM** | `hyprland`, `xdg-desktop-portal-hyprland` |
+| **Bar & Menu** | `waybar`, `rofi-wayland`, `jq` |
+| **Shell & Terminal** | `kitty`, `fish`, `fastfetch` |
+| **Python Modules** | `python-requests` (Required for prayer times local caching) |
+| **Typography** | `ttf-jetbrains-mono-nerd`, `ttf-vazirmatn-fonts` (Arabic fallback layout) |
 
 ---
 
-## 🚀 Installation
+## 🚀 Installation & Deployment
 
-1. **Clone this repo:**
+### 1. Clone the Repository
 ```bash
-   git clone [https://github.com/YOUR_GITHUB_USERNAME/hyprland-lua-dotfiles.git](https://github.com/YOUR_GITHUB_USERNAME/hyprland-lua-dotfiles.git)
-   cd hyprland-lua-dotfiles
+git clone [https://github.com/zkrzk/hyprland-lua-dotfiles.git](https://github.com/zkrzk/hyprland-lua-dotfiles.git)
+cd hyprland-lua-dotfiles
