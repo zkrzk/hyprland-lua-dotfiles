@@ -1,0 +1,123 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+"logo": {
+    "source": "arch",
+    "color": {
+      "1": "#f2f2f2",
+      "2": "#f2f2f2"  
+    },
+    "padding": {
+      "top": 2,
+      "right": 4
+    }
+  },
+  "display": {
+    "separator": " "
+  },
+  "modules": [
+    "break",
+    {
+      "type": "title",
+      "keyWidth": 10,
+      "color": "#f2f2f2"
+    },
+    "break",
+    {
+      "type": "os",
+      "key": " ",
+      "keyColor": "#f2f2f2",
+      "color": "#f2f2f2",
+      "format": "{1} {2} ({12})"
+    },
+    {
+      "type": "kernel",
+      "key": " ",
+      "keyColor": "#f2f2f2",
+      "color": "#f2f2f2"
+    },
+    {
+      "type": "uptime",
+      "key": "󱎫 ",
+      "keyColor": "#f2f2f2",
+      "color": "#f2f2f2"
+    },
+    {
+      "type": "packages",
+      "key": "󰏖 ",
+      "keyColor": "#f2f2f2",
+      "color": "#f2f2f2"
+    },
+    {
+      "type": "shell",
+      "key": ">_",
+      "keyColor": "#f2f2f2",
+      "color": "#f2f2f2",
+      "format": "{1} {2}"
+    },
+    {
+      "type": "display",
+      "key": "󰍹 ",
+      "keyColor": "#f2f2f2",
+      "color": "#f2f2f2",
+      "format": "{1}x{2} @ {3}Hz"
+    },
+    {
+      "type": "wm",
+      "key": " ",
+      "keyColor": "#f2f2f2",
+      "color": "#f2f2f2",
+      "format": "{1} ({2})"
+    },
+    {
+      "type": "terminal",
+      "key": " ",
+      "keyColor": "#f2f2f2",
+      "color": "#f2f2f2"
+    },
+    "break",
+    {
+      "type": "host",
+      "key": " ",
+      "keyColor": "#f2f2f2",
+      "color": "#f2f2f2",
+      "format": "{2}"
+    },
+    {
+      "type": "cpu",
+      "key": "󰍛 ",
+      "keyColor": "#f2f2f2",
+      "color": "#f2f2f2",
+      "format": "{1} ({5}) @ {7}GHz"
+    },
+    {
+      "type": "gpu",
+      "key": "󰢮 ",
+      "keyColor": "#f2f2f2",
+      "color": "#f2f2f2",
+      "format": "{2}"
+    },
+    {
+      "type": "memory",
+      "key": " ",
+      "keyColor": "#f2f2f2",
+      "color": "#f2f2f2",
+      "format": "{1} / {2} ({3})"
+    },
+    {
+      "type": "disk",
+      "key": " ",
+      "keyColor": "#f2f2f2",
+      "color": "#f2f2f2",
+      "format": "{1} / {2} ({3})",
+      "folders": "/"
+    },
+    {
+      "type": "localip",
+      "key": "󰩟 ",
+      "keyColor": "#f2f2f2",
+      "color": "#f2f2f2",
+      "compact": true
+    },
+    "break"
+  ]
+}

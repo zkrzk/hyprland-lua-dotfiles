@@ -1,0 +1,71 @@
+{
+ "layer": "top",
+ "position": "top",
+ "height": 30,
+ "margin-top": 6,
+ "margin-left": 10,
+ "margin-right": 10,
+ "spacing": 5,
+ "modules-left": ["hyprland/workspaces", "mpris"],
+ "modules-center": ["clock"],
+ "modules-right": ["idle_inhibitor", "cpu", "memory", "network", "pulseaudio", "battery", "tray"],
+ "clock": {
+   "format": "󰥔 {:%I:%M %p}",
+   "tooltip-format": "<tt>{calendar}</tt>"
+ },
+ "hyprland/workspaces": {
+   "format": "{name}",
+   "on-click": "activate",
+   "all-outputs": true,
+   "persistent-workspaces": {
+     "*": 1
+   }
+ },
+ "mpris": {
+   "format": "󰎆 {title}",
+   "format-paused": "󰏤 {title}",
+   "max-length": 25
+ },
+ "idle_inhibitor": {
+   "format": "{icon}",
+   "format-icons": {
+     "activated": "☕",
+     "deactivated": "󰾆"
+   },
+   "tooltip": true,
+   "tooltip-format-activated": "Hypridle Disabled (Awake) ☕",
+   "tooltip-format-deactivated": "Hypridle Enabled (Normal)"
+ },
+ "cpu": {
+   "format": "󰻠 {usage}%",
+   "interval": 5
+ },
+ "memory": {
+   "format": "󰍛 {percentage}%",
+   "interval": 5
+ },
+ "pulseaudio": {
+   "format": "{icon} {volume}%",
+   "format-muted": "󰖁",
+   "format-icons": {
+     "default": ["󰕾"]
+   },
+   "on-click": "pavucontrol"
+ },
+ "network": {
+   "format-wifi": " {essid}",
+   "format-ethernet": "󰈀",
+   "format-disconnected": "󰤭",
+   "on-click": "kitty nmtui"
+ },
+ "battery": {
+   "states": { "warning": 30, "critical": 15 },
+   "format": "{icon} {capacity}%",
+    "format-charging": "󱐋 {capacity}%",
+   "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"]
+ },
+ "tray": {
+   "icon-size": 13,
+   "spacing": 8
+ }
+}

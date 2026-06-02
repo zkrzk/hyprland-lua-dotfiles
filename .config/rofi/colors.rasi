@@ -1,0 +1,9 @@
+* {
+    bg: #111111;
+    bg-dark: #0a0a0a;
+    surface: #1f1f1f;
+    text: #ffffff;
+    text-dim: #777777;
+    primary: #f2f2f2;
+    secondary: #dddddd;
+}

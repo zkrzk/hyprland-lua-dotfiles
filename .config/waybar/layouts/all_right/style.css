@@ -1,0 +1,81 @@
+@import "current_colors.css";
+
+* {
+    border: none;
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", "Vazirmatn", sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+}
+
+.modules-right {
+    background-color: @bg;
+    border: 1px solid @surface;
+    border-radius: 12px;
+    padding: 4px 12px;
+    margin-top: 5px;
+}
+
+#workspaces {
+    background: transparent;
+    padding-right: 8px;
+    margin-right: 8px;
+    border-right: 1px solid @surface;
+}
+
+#workspaces button {
+    color: @text;
+    padding: 0 8px;
+    margin: 0 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+#workspaces button.active {
+    color: @primary;
+    border-bottom: 2px solid @primary;
+}
+
+#workspaces button:hover {
+    color: @secondary;
+    background-color: @surface;
+    border-radius: 5px;
+}
+
+#mpris { color: @red; padding: 0 10px; }
+#idle_inhibitor { color: @green; padding: 0 10px; }
+#idle_inhibitor.activated { color: @green; }
+#cpu { color: @yellow; padding: 0 10px; }
+#memory { color: @orange; padding: 0 10px; }
+#clock { color: @primary; padding: 0 10px; }
+#pulseaudio { color: @teal; padding: 0 10px; }
+#network { color: @secondary; padding: 0 10px; }
+#battery { color: @cyan; padding: 0 10px; }
+#tray { color: @pink; padding: 0 6px; }
+
+#battery.critical:not(.charging) {
+    color: @red;
+    animation-name: blink;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to { opacity: 0.3; }
+}
+
+tooltip {
+    background: @bg;
+    border: 1px solid @surface;
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: @text;
+    padding: 5px;
+}

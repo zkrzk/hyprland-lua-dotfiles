@@ -1,0 +1,80 @@
+@import "/home/zkr/.config/waybar/current_colors.css";
+
+* {
+    border: none;
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", "Vazirmatn", sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+}
+
+.modules-center {
+    background-color: rgba(10, 12, 16, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    border-radius: 14px;
+    padding: 4px 16px;
+}
+
+#workspaces {
+    background: transparent;
+    padding-right: 8px;
+    margin-right: 4px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#workspaces button {
+    color: @text;
+    padding: 0 6px;
+    margin: 0 2px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#workspaces button.active {
+    color: @primary;
+    border-bottom: 2px solid @primary;
+}
+
+#workspaces button:hover {
+    color: @secondary;
+    background-color: @surface;
+    border-radius: 5px;
+}
+
+#mpris { color: @red; padding: 0 8px; }
+#idle_inhibitor { color: @green; padding: 0 8px; }
+#idle_inhibitor.activated { color: @green; }
+#cpu { color: @yellow; padding: 0 8px; }
+#memory { color: @orange; padding: 0 8px; }
+#custom-system-clock { color: @primary; padding: 0 10px; font-weight: 800; }
+#pulseaudio { color: @teal; padding: 0 8px; }
+#network { color: @secondary; padding: 0 8px; }
+#battery { color: @cyan; padding: 0 8px; }
+#tray { color: @pink; padding: 0 4px; }
+
+#battery.critical:not(.charging) {
+    color: @red;
+    animation-name: blink;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to { opacity: 0.3; }
+}
+
+tooltip {
+    background: rgba(10, 12, 16, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: @text;
+    padding: 5px;
+}

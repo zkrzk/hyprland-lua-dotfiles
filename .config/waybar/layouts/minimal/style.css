@@ -1,0 +1,93 @@
+@import "current_colors.css";
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", "Vazirmatn", sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+#workspaces {
+    background-color: @bg;
+    border: 1px solid @surface;
+    border-radius: 20px;
+    padding: 2px 4px;
+    margin-left: 5px;
+}
+
+#workspaces button {
+    padding: 0 10px;
+    margin: 2px;
+    border-radius: 15px;
+    color: @text_dim;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.68);
+}
+
+#workspaces button.active {
+    background-color: @primary;
+    color: @bg_dark;
+    min-width: 40px;
+}
+
+#workspaces button:hover {
+    background-color: @secondary;
+    color: @bg_dark;
+}
+
+#mpris {
+    background-color: @bg;
+    color: @secondary;
+    border: 1px solid @surface;
+    border-radius: 20px;
+    padding: 0 14px;
+    margin-left: 5px;
+}
+
+#clock {
+    background-color: @bg;
+    color: @primary;
+    border: 1px solid @surface;
+    border-radius: 20px;
+    padding: 0 20px;
+}
+
+.modules-right {
+    background-color: @bg;
+    border: 1px solid @surface;
+    border-radius: 20px;
+    padding: 2px 12px;
+}
+
+#idle_inhibitor, #cpu, #memory, #network, #pulseaudio, #battery, #tray {
+    padding: 0 8px;
+}
+
+#idle_inhibitor { color: @green; }
+#idle_inhibitor.activated { color: @green; }
+
+#cpu        { color: @yellow; }
+#memory     { color: @orange; }
+
+#network    { color: @secondary; }
+#pulseaudio { color: @teal; }
+#battery    { color: @cyan; }
+#tray       { color: @pink; }
+
+tooltip {
+    background: @bg;
+    border: 1px solid @surface;
+    border-radius: 12px;
+}
+
+tooltip label {
+    color: @text;
+    padding: 8px;
+}

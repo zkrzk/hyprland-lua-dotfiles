@@ -1,0 +1,82 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 35,
+  "margin-top": 5,
+  "margin-left": 10,
+  "margin-right": 10,
+  "spacing": 0,
+  "modules-left": [],
+  "modules-center": [],
+  "modules-right": [
+    "hyprland/workspaces",
+    "mpris",
+    "idle_inhibitor",
+    "cpu",
+    "memory",
+    "clock",
+    "pulseaudio",
+    "network",
+    "battery",
+    "tray"
+  ],
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+    "all-outputs": true,
+    "persistent-workspaces": {
+      "*": 1
+    }
+  },
+  "mpris": {
+    "format": "󰎆 {title}",
+    "format-paused": "󰏤 {title}",
+    "max-length": 20
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "☕",
+      "deactivated": "󰾆"
+    }
+  },
+  "cpu": {
+    "format": "󰻠 {usage}%",
+    "interval": 5
+  },
+  "memory": {
+    "format": "󰍛 {percentage}%",
+    "interval": 5
+  },
+  "clock": {
+    "format": "󰥔 {:%I:%M %p}",
+    "tooltip-format": "<tt>{calendar}</tt>"
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰖁",
+    "format-icons": {
+      "default": ["󰕾"]
+    },
+    "on-click": "pavucontrol"
+  },
+  "network": {
+    "format-wifi": "󰤨 {essid}",
+    "format-ethernet": "󰈀 LAN",
+    "format-disconnected": "󰤮 Off",
+    "on-click": "kitty nmtui"
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "󱐋 {capacity}%",
+    "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"]
+  },
+  "tray": {
+    "icon-size": 13,
+    "spacing": 8
+  }
+}
