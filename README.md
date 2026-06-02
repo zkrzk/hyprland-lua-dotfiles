@@ -42,6 +42,8 @@ Ensure the following packages are installed on your system before deploying:
 git clone [https://github.com/zkrzk/hyprland-lua-dotfiles.git](https://github.com/zkrzk/hyprland-lua-dotfiles.git)
 cd hyprland-lua-dotfiles
 
+
+
 ## 🖼️ Preview
 
 ![Desktop Preview](screenshots/preview1.png)
